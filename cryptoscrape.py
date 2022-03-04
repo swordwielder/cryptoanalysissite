@@ -130,7 +130,7 @@ def scrape(r):
 def write_to_csv(file):
 
     fields = ['Name', 'Symbol', 'Price', 'Percent Change', 'Percent Change 7 days', 'Market Cap', 'Volume 24 Hr', 'Circulating Supply', 'Pull Time']
-    filename = 'coinmarketcap3.csv'
+    filename = 'coinmarketcap4.csv'
 
     #Writes the info pulled into the CSV
     with open(filename, 'w') as csvfile:
