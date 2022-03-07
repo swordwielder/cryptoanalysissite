@@ -51,7 +51,7 @@ for i in bitcointPrices:
 print(allPrices)
 
 
-def apple(stock):
+def calculate(stock):
     maximum = max(stock)
     profit = 0
     buyIndex = -1
@@ -71,5 +71,5 @@ def apple(stock):
     print('the profit is: ')
     print(profit)
 
-apple(allPrices)
+calculate(allPrices)
 
