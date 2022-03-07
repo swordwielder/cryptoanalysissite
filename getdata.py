@@ -30,28 +30,19 @@ import os
 # read dataset
 path = os.getcwd()
 filenames = glob.glob(os.path.join(path, "coinmarketcap*.csv"))
-print(filenames)
+#print(filenames)
 
 allBitcoinDict = {}
 for file in filenames:
     df = pd.read_csv(file)
-    print(file)
-    print(df)
+    #print(file)
+    #print(df)
     #allBitcoinPrice.append(df['Price'][0])
     allBitcoinDict[df['Percent Change 7 days'][0]] = float(df['Price'][0][1:].replace(',',''))
     
 #print(allBitcoinDict)
 bitcoinsPrices = sorted(allBitcoinDict.items())
-print(bitcoinsPrices)
-
-# bitcointPrices = []
-# print({k: v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])})
-# {bitcointPrices.append(k): v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])}
-# #print(bitcointPrices)
-# allPrices = []
-# for i in bitcointPrices:
-#     allPrices.append(float(i[1:].replace(',','')))
-# print(allPrices)
+#print(bitcoinsPrices)
 
 
 bitcoinList= []
