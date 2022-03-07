@@ -44,7 +44,32 @@ for file in filenames:
 bitcointPrices = []
 print({k: v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])})
 {bitcointPrices.append(k): v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])}
-print(bitcointPrices)
+#print(bitcointPrices)
+allPrices = []
+for i in bitcointPrices:
+    allPrices.append(float(i[1:].replace(',','')))
+print(allPrices)
 
-for i in range(bitcointPrices):
-    print(i)
+
+def apple(stock):
+    maximum = max(stock)
+    profit = 0
+    buyIndex = -1
+
+
+    maxBuyProfit = 0
+    for i in range(len(stock)):
+        maximum = max(stock[i:])
+        buyprice = stock[i]
+
+        if profit < maximum-buyprice:
+            buyIndex = i
+            profit = maximum - buyprice
+            sellIndex = stock.index(maximum)
+    print('The index you should buy is '+ str(buyIndex))
+    print('The index you should sell is ' + str(sellIndex))
+    print('the profit is: ')
+    print(profit)
+
+apple(allPrices)
+
