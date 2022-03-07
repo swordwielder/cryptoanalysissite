@@ -38,20 +38,30 @@ for file in filenames:
     print(file)
     print(df)
     #allBitcoinPrice.append(df['Price'][0])
-    allBitcoinDict[df['Price'][0]] = df['Percent Change 7 days'][0]
+    allBitcoinDict[df['Percent Change 7 days'][0]] = float(df['Price'][0][1:].replace(',',''))
     
 #print(allBitcoinDict)
-bitcointPrices = []
-print({k: v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])})
-{bitcointPrices.append(k): v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])}
-#print(bitcointPrices)
-allPrices = []
-for i in bitcointPrices:
-    allPrices.append(float(i[1:].replace(',','')))
-print(allPrices)
+bitcoinsPrices = sorted(allBitcoinDict.items())
+print(bitcoinsPrices)
+
+# bitcointPrices = []
+# print({k: v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])})
+# {bitcointPrices.append(k): v for k, v in sorted(allBitcoinDict.items(), key=lambda item: item[1])}
+# #print(bitcointPrices)
+# allPrices = []
+# for i in bitcointPrices:
+#     allPrices.append(float(i[1:].replace(',','')))
+# print(allPrices)
+
+
+bitcoinList= []
+for k,v in bitcoinsPrices:
+    bitcoinList.append(v)
 
 
 def calculate(stock):
+    
+
     maximum = max(stock)
     profit = 0
     buyIndex = -1
@@ -66,10 +76,13 @@ def calculate(stock):
             buyIndex = i
             profit = maximum - buyprice
             sellIndex = stock.index(maximum)
-    print('The index you should buy is '+ str(buyIndex))
-    print('The index you should sell is ' + str(sellIndex))
+    print('The time you should buy is '+ bitcoinsPrices[buyIndex][0] )
+    print('The time you should sell is ' + bitcoinsPrices[sellIndex][0] )
     print('the profit is: ')
     print(profit)
 
-calculate(allPrices)
+
+
+
+calculate(bitcoinList)
 
