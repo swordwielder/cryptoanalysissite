@@ -46,8 +46,10 @@ bitcoinsPrices = sorted(allBitcoinDict.items())
 
 
 bitcoinList= []
+bitcoinTime = []
 for k,v in bitcoinsPrices:
     bitcoinList.append(v)
+    # bitcoinTime.append(k)
 
 
 def calculate(stock):
@@ -58,7 +60,6 @@ def calculate(stock):
     buyIndex = -1
 
 
-    maxBuyProfit = 0
     for i in range(len(stock)):
         maximum = max(stock[i:])
         buyprice = stock[i]
@@ -68,7 +69,9 @@ def calculate(stock):
             profit = maximum - buyprice
             sellIndex = stock.index(maximum)
     print('The time you should buy is '+ bitcoinsPrices[buyIndex][0] )
+    print('the price to buy is ' + str(bitcoinsPrices[buyIndex][1]))
     print('The time you should sell is ' + bitcoinsPrices[sellIndex][0] )
+    print('the price to sell is ' + str(bitcoinsPrices[sellIndex][1]))
     print('the profit is: ')
     print(profit)
 
