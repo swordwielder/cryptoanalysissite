@@ -95,7 +95,7 @@ def scrape(r):
         if 'Buy' in temp:
             temp.remove('Buy')
 
-        print(temp)
+        #print(temp)
         j+=1
         if j>=11:
             break
@@ -108,11 +108,16 @@ def scrape(r):
             newdata.append(temp[7]+temp[8])
             newdata.append(temp[9])
             newdata.append(temp[10])
-        if len(temp)==11:
+        elif len(temp)==11:
             newdata.append(temp[5])
             newdata.append(temp[6])
             newdata.append(temp[7])
             newdata.append(temp[8])
+        else:
+            newdata.append(temp[5]+temp[6])
+            newdata.append(temp[7]+temp[8])
+            newdata.append(temp[9])
+            newdata.append(temp[10])
         
         a=temp[len(temp)-1].split()
         newdata.append(a[0])
@@ -120,7 +125,9 @@ def scrape(r):
         now = datetime.now()
         dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
         newdata.append(dt_string)
+        #print(newdata)
         alldata.append(newdata)
+
         
     return alldata
             
@@ -131,7 +138,7 @@ def write_to_csv(file):
 
     fields = ['Name', 'Symbol', 'Price', 'Percent Change', 'Percent Change 7 days', 'Market Cap', 'Volume 24 Hr', 'Circulating Supply', 'Pull Time']
     now = datetime.now()
-    print('the now is')
+    #print('the now is')
     now = str(now)
     filename = 'coinmarketcap%s.csv' % (now)
 
@@ -195,7 +202,9 @@ def connect_db(alldata):
         #List all data from MARKET DATA TABLE
         c.execute("SELECT * FROM MARKETDATA")
         row = c.fetchall()
-        # print(row)
+        #print('print all database')
+        print(row)
+        #print()
         conn.close()
         
         
@@ -209,8 +218,8 @@ def connect_db(alldata):
 
 r = requests.get('https://coinmarketcap.com/')
 coindatalist = scrape(r.content)
-write_to_csv(coindatalist)
-#connect_db(coindatalist)
+#write_to_csv(coindatalist)
+connect_db(coindatalist)
 
 
 
